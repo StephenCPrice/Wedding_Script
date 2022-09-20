@@ -1,23 +1,23 @@
-import gspread, pprint, re
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import pandas as pd
 
-sa = gspread.service_account()
-sh = sa.open('Master Wedding Planner')
-wks = sh.worksheet('Guests')
-count = wks.row_count
-def mklist(n):
-    for i in range(n):
-        yield []
-names_list = list(mklist(count))
 
-for i in range(4, count):
+def read_in_sheets(sheet_num):
 
-    names_list[i].append(wks.get(f'A{i}'))
-    names_list[i].append(wks.get(f'E{i}'))
-    print(names_list)
-'''
-for i in range(count):
-    current_row = wks.row_values(1)
-    print(current_row)
-    #for x in range(len(current_row)):
-     #   print(f'{current_row[x]} ' )
-'''
+    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
+
+    client = gspread.authorize(creds)
+    sheet = client.open('Master Wedding Planner')
+    sheet_instance1 = sheet.get_worksheet(sheet_num)
+    data = sheet_instance1.get_all_records()
+    df = pd.DataFrame(data)
+
+    return df
+
+
+if __name__ == "__main__":
+
+    sheet = read_in_sheets(0)
+    print(sheet.head())
