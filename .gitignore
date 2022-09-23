@@ -13,3 +13,9 @@
 
 # ignore creds for gspread
 service_account.json
+
+#Contains Twilio information for sending txts
+twilio_creds.env
+
+#Testing twilio
+twilio_test.py
