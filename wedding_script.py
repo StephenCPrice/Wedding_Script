@@ -1,11 +1,15 @@
 import gspread
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
+from dotenv import load_dotenv
+import os
+
+load_dotenv("creds.env")
 
 # Twilio Creds
-TWILIO_PHONE_NUMBER = "+14783775883"
-TWILIO_ACCOUNT_SID = "AC483698bc04b95d9174dc0f746e746399"
-TWILIO_AUTH_TOKEN = "dcce89dc17958a6842ed35a1033535e8"
+TWILIO_PHONE_NUMBER = os.environ.get("TWILIO_PHONE_NUMBER")
+TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
 
 # Use a service account to authenticate to the Google Spreadsheet
 gc = gspread.oauth() 
