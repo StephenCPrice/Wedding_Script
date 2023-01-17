@@ -19,3 +19,17 @@ body {
     margin-bottom: 20px;
     font-size: 16px;
   }
+
+  div#login-box, div#register-box {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px #ccc;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+ ul#register {
+    text-align: center;
+    padding-right: 40px;
+ }

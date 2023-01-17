@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
   <title>{{title}}</title>
 </head>
 <body>
   <h1>{{title}}</h1>
+  <div id="login-box">
   <form id="login-form" action ="{{ url_for('routes.login')}}" method = POST>
     <label>Email:</label>
     <input type="email" name="email" required>
@@ -15,5 +16,7 @@
     <br>
     <input type="submit" value="Submit">
   </form>
+  </div>
+  <a id="register" href="{{ url_for('routes.register')}}">register</a>
 </body>
 </html>
