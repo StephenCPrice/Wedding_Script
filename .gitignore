@@ -12,3 +12,7 @@ static/css/bulma-rtl.css.map
 static/css/bulma-rtl.min.css
 static/css/bulma.css
 static/css/bulma.min.css
+static/css/bulma.css.map
+*.pyc
+__pycache__/register.cpython-310.pyc
+__pycache__/routes.cpython-310.pyc
