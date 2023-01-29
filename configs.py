@@ -7,7 +7,8 @@ class Config:
     """Base config."""
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
-    SQLALCHEMY_DATABASE_URI = os.environ.get("psql_credss")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("mysql_creds")
+    SQLALCHEMY_POOL_RECYCLE = 280
     STATIC_FOLDER='static'
     TEMPLATES_FOLDER = 'templates'
     MAIL_SERVER = 'smtp.gmail.com'
