@@ -6,7 +6,9 @@ import os
 from itsdangerous import URLSafeTimedSerializer
 import configs
 from dotenv import load_dotenv
+'''from dbssh import create_ssh_tunnel'''
 
+'''tunnel = create_ssh_tunnel()'''
 load_dotenv("creds.env")
 conn_credentials = os.environ.get("myql_creds")
 app_key = os.environ.get("app_key")
@@ -18,7 +20,7 @@ serializer = URLSafeTimedSerializer(serializer_key)
 def create_app():
     """Construct the core application."""
     app = Flask(__name__)
-    app.config.from_object(configs.Config)
+    app.config.from_object(configs.devConfig)
     db.init_app(app)
     mail.init_app(app)
     login_manager = LoginManager()

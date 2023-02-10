@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect, render_template, Blueprint, flash, url_for
+from flask_login import login_user, logout_user, login_required, current_user
 from twilio.twiml.messaging_response import MessagingResponse
 from register import register_user
 from login import authenticate_user
@@ -8,7 +9,7 @@ from __init__ import db, serializer
 from datetime import datetime
 routes = Blueprint('routes', __name__)
 
-
+@routes.route('/')
 @routes.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
@@ -59,6 +60,12 @@ def confirm_email(token):
             flash('User not found')
 
     return render_template('index.html', title='login')
+
+@routes.route('/home')
+@login_required
+def home():
+    logout_user()
+    return render_template('home.html', title='home')
 
 @routes.route("/sms", methods=['POST'])
 def sms():

@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bulma.min.css') }}" rel="stylesheet">
   <title>{{title}}</title>
 </head>
 <body>
-  <h1>{{title}}</h1>
-  <div id="login-box">
-  <form id="login-form" action ="{{ url_for('routes.login')}}" method = POST>
-    <label>Email:</label>
-    <input type="email" name="email" required>
-    <br>
-    <label>Password:</label>
-    <input type="password" name="password" required>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
-  {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-          {{ message }}
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-  </div>
-  <a id="register" href="{{ url_for('routes.register')}}">register</a>
+  <section class="section">
+    <div class="container">
+      <h1 class="title is-1 has-text-centered">{{title}}</h1>
+      <div class="columns is-centered">
+        <div class="column is-one-quarter">
+          <form id="login-form" action="{{ url_for('routes.login')}}" method="POST" class="box">
+            <div class="field">
+              <label class="label">Email:</label>
+              <div class="control">
+                <input type="email" name="email" required class="input is-one-third">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password:</label>
+              <div class="control">
+                <input type="password" name="password" required class="input is-one-third">
+              </div>
+            </div>
+            <div class="field is-grouped is-grouped-centered">
+              <div class="control">
+                <input type="submit" value="Submit" class="button is-link">
+              </div>
+              <div class="control">
+                <a id="register" href="{{ url_for('routes.register')}}" class="button is-link">Register</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="notification is-danger">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </div>
+  </section>
 </body>
 </html>

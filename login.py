@@ -16,8 +16,8 @@ def authenticate_user(email, password):
 
     elif checkpw(password, user.password):
         login_user(user, remember=True)
-        logout_user()
-        return flash('it worked!')
+        flash('it worked!')
+        return redirect('/home')
 
     else:
         flash('Incorrect password')
